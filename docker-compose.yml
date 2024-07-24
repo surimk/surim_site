@@ -1,0 +1,9 @@
+name: surim_site
+
+services:
+  frontend:
+    container_name: surim_site
+    build: 
+      dockerfile: Dockerfile
+    ports: 
+      - '3000:3000'
