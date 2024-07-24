@@ -1,6 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Running NextJs App on Docker
 
-## Getting Started
+Run dockerized version by either:
+
+```bash
+docker run --publish 3000:3000 surim_site:{VERSION}
+# or use docker-compose
+docker-compose up
+```
+
+## Testing Locally
 
 First, run the development server:
 
