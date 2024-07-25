@@ -5,7 +5,6 @@ WORKDIR /surim_site
 COPY public /public
 COPY src /src
 COPY package*.json /
-COPY next-env.d.ts /
 COPY next.config.mjs /
 COPY postcss.config.mjs /
 COPY tailwind.config.ts /
