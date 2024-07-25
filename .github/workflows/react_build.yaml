@@ -1,0 +1,32 @@
+name: React Build and Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '22.x'
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Lint React App
+        run: |
+          npm run lint
+
+      - name: Build React App
+        run: |
+          npm run build
+          

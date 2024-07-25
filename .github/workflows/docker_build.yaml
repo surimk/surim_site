@@ -1,9 +1,10 @@
 name: Docker Build
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["React Build and Test"]
+    types:
+      - completed
 
 jobs:
   build:
