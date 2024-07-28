@@ -1,3 +1,9 @@
+variable cloudflare_api_token {
+    description = "Cloudflare API Token"
+    type        = string
+    default     = ""
+}
+
 variable "vpc_id" {
     description = "VPC ID"
     type        = string
@@ -19,4 +25,3 @@ variable "surim_site_tags" {
         Environment = "dev"
     }
 }
-

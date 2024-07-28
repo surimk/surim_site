@@ -11,6 +11,10 @@ data "aws_key_pair" "surim_site_key" {
     include_public_key = true
 }
 
+data "cloudflare_zone" "surim_site" {
+    name = "surimkim.com"
+}
+
 resource "aws_instance" "surim_site" {
     ami = "ami-0862be96e41dcbf74"
     instance_type = "t2.micro"
@@ -39,6 +43,12 @@ resource "aws_security_group" "surim_site_sg" {
         cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
+        from_port   = 443
+        to_port     = 443
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    ingress {
         from_port   = 22
         to_port     = 22
         protocol    = "tcp"
@@ -63,4 +73,12 @@ resource "aws_security_group" "surim_site_sg" {
             Name = "${var.surim_site_tags["Application"]}_sg"
         }
     )
+}
+
+resource "cloudflare_record" "surim_site" {
+    zone_id = data.cloudflare_zone.surim_site.id
+    name = "surim_site"
+    value = "${aws_instance.surim_site.public_ip}"
+    type = "A"
+    ttl = 300
 }
