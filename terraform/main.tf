@@ -54,12 +54,6 @@ resource "aws_security_group" "surim_site_sg" {
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     } 
-    ingress {
-        from_port = 3000
-        to_port = 3000
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
     
     egress {
         from_port = 0
@@ -77,8 +71,16 @@ resource "aws_security_group" "surim_site_sg" {
 
 resource "cloudflare_record" "surim_site" {
     zone_id = data.cloudflare_zone.surim_site.id
-    name = "surim_site"
+    name = "@"
     value = "${aws_instance.surim_site.public_ip}"
     type = "A"
+    ttl = 300
+}
+
+resource "cloudflare_record" "surim_site_www" {
+    zone_id = data.cloudflare_zone.surim_site.id
+    name = "www"
+    value = data.cloudflare_zone.surim_site.name
+    type = "CNAME"
     ttl = 300
 }
