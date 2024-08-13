@@ -1,3 +1,61 @@
+## Initial EC2 Setup
+
+Once `terraform apply` is ran and EC2 instance has created, these steps must be completed.
+
+ssh into the newly created EC2 instance and install dependencies (docker and nginx):
+
+```
+sudo apt update
+sudo apt upgrade -y
+sudo apt install docker.io -y
+sudo apt install nginx -y 
+```
+
+Pull the docker image
+```
+sudo docker pull surimkim/surim_site:{VERSION}
+```
+
+Run the docker container on port 3000
+```
+sudo docker run -d -p 3000:3000 surimkim/surim_site:{VERSION}
+```
+
+### Enable HTTPS ###
+First, scp in cloudflare ssl cert and private key
+
+After, create a new `default.conf` in `/etc/nginx/conf.d` and configure as:
+```
+server {
+    listen 80;
+    server_name {DOMAIN NAME};
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name {DOMAIN NAME};
+
+    ssl_certificate {PATH TO CERT};
+    ssl_certificate_key {PATH TO KEY};
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+then restart nginx with:
+```
+sudo systemctl restart nginx
+```
+
+
 ## Running NextJs App on Docker
 
 Run dockerized version by either:
