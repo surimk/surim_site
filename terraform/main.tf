@@ -12,7 +12,7 @@ data "aws_key_pair" "surim_site_key" {
 }
 
 data "cloudflare_zone" "surim_site" {
-    name = "surimkim.com"
+    name = var.domain_name
 }
 
 resource "aws_instance" "surim_site" {
@@ -26,6 +26,7 @@ resource "aws_instance" "surim_site" {
         volume_size = 8
         volume_type = "gp2"
     }
+
     
     tags = merge(var.surim_site_tags,
         {
@@ -74,7 +75,8 @@ resource "cloudflare_record" "surim_site" {
     name = "@"
     value = "${aws_instance.surim_site.public_ip}"
     type = "A"
-    ttl = 300
+    ttl = 1
+    proxied = true
 }
 
 resource "cloudflare_record" "surim_site_www" {
@@ -82,5 +84,6 @@ resource "cloudflare_record" "surim_site_www" {
     name = "www"
     value = data.cloudflare_zone.surim_site.name
     type = "CNAME"
-    ttl = 300
+    ttl = 1
+    proxied = true
 }

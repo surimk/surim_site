@@ -7,4 +7,4 @@ services:
       dockerfile: Dockerfile
     container_name: surim_site
     ports: 
-      - '80:80'
+      - '3000:3000'

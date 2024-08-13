@@ -16,6 +16,12 @@ variable "subnet_id" {
     default     = ""
 }
 
+variable "domain_name" {
+    description = "Domain Name"
+    type        = string
+    default     = ""
+}
+
 variable "surim_site_tags" {
     description = "Tags for Resources"
     type        = map(string)
