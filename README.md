@@ -16,9 +16,9 @@ Pull the docker image
 sudo docker pull surimkim/surim_site:{VERSION}
 ```
 
-Run the docker container on port 3000
+Run the docker container on port 3000 and name container as surim_site_prod
 ```
-sudo docker run -d -p 3000:3000 surimkim/surim_site:{VERSION}
+sudo docker run -d -p 3000:3000 --name surim_site_prod surimkim/surim_site:{VERSION}
 ```
 
 ### Enable HTTPS ###
@@ -55,6 +55,27 @@ then restart nginx with:
 sudo systemctl restart nginx
 ```
 
+### Cron Job for Pulling and Running Latest Docker Image ###
+The script `check_docker_hub.sh` in `cron` directory will check if the latest docker image has been pulled. If not, it will pull the most recent pushed docker image, kill the older version container, and relaunch with the latest image. This script takes in 3 arguments: DOCKER_HUB_USERNAME IMAGE_NAME CONTAINER_NAME. 
+
+This script is set as a cron job to run every 10 minutes on the EC2 machine to ensure latest deployment.
+
+To enable, first copy/scp `check_docker_hub.sh` into the EC2, ssh into it, then:
+
+make the script an executable and move to `/usr/local/bin`
+```
+sudo chmod +x check_docker_hub.sh
+sudo mv check_docker_hub.sh /usr/local/bin/
+```
+
+then set cron job with `crontab -e`
+
+and add the followling line to file:
+```
+*/10 * * * * sudo /usr/local/bin/check_docker_hub.sh surimkim surim_site surim_site_prod
+```
+
+finally, save and exit the editor.
 
 ## Running NextJs App on Docker
 
