@@ -79,6 +79,15 @@ resource "cloudflare_record" "surim_site" {
     proxied = true
 }
 
+resource "cloudflare_record" "surimkim_com_wildcard" {
+  zone_id = data.cloudflare_zone.surim_site.id
+  name    = "*"
+  value   = "${aws_instance.surim_site.public_ip}"
+  type    = "A"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "surim_site_www" {
     zone_id = data.cloudflare_zone.surim_site.id
     name = "www"
