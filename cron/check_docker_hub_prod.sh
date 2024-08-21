@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Arguments: DOCKER_HUB_USERNAME, IMAGE_NAME, CONTAINER_NAME
-# TODO: add support for dev env
+# For PROD environment
 DOCKER_HUB_USERNAME=$1
 IMAGE_NAME=$2
 CONTAINER_NAME=$3
@@ -14,9 +14,6 @@ TAGS=$(echo "${TAGS}" | jq -r '.results[] | .name + " " + .last_updated')
 
 # Filter out tags that contain "dev" and sort the remaining tags by the last_pushed_at timestamp
 LATEST_TAG=$(echo "${TAGS}" | grep -v "dev" | sort -r -k 2 -t ' ' | head -1 | cut -d ' ' -f 1)
-
-# Filter tags that contain "dev" and sort them by the last_pushed_at timestamp
-DEV_TAG=$(echo "${TAGS}" | grep "dev" | sort -r -k 2 -t ' ' | head -1 | cut -d ' ' -f 1)
 
 # Check if latest tag has been pulled
 if ! docker images --format '{{.Repository}}:{{.Tag}}' | grep -q "${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${LATEST_TAG}"; then

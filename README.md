@@ -21,6 +21,11 @@ Run the docker container on port 3000 and name container as surim_site_prod
 sudo docker run -d -p 3000:3000 --name surim_site_prod surimkim/surim_site:{VERSION}
 ```
 
+For dev container, run on port 4000 and name container as surim_site_dev and use `npm run dev` command
+```
+sudo docker run -d -p 4000:4000 --name surim_site_dev surimkim/surim_site:{VERSION-dev} npm run dev
+```
+
 ### Enable HTTPS ###
 First, scp in cloudflare ssl cert and private key
 
@@ -28,7 +33,7 @@ After, create a new `default.conf` in `/etc/nginx/conf.d` and configure as:
 ```
 server {
     listen 80;
-    server_name {DOMAIN NAME};
+    server_name surimkim.com;
 
     location / {
         return 301 https://$host$request_uri;
@@ -37,7 +42,7 @@ server {
 
 server {
     listen 443 ssl;
-    server_name {DOMAIN NAME};
+    server_name surimkim.com;
 
     ssl_certificate {PATH TO CERT};
     ssl_certificate_key {PATH TO KEY};
@@ -49,6 +54,22 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
+
+server {
+    listen 443 ssl;
+    server_name dev.surimkim.com;
+
+    ssl_certificate {PATH TO CERT}
+    ssl_certificate_key {PATH TO KEY};
+
+    location / {
+        proxy_pass http://localhost:4000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
 ```
 then restart nginx with:
 ```
@@ -56,7 +77,7 @@ sudo systemctl restart nginx
 ```
 
 ### Cron Job for Pulling and Running Latest Docker Image ###
-The script `check_docker_hub.sh` in `cron` directory will check if the latest docker image has been pulled. If not, it will pull the most recent pushed docker image, kill the older version container, and relaunch with the latest image. This script takes in 3 arguments: DOCKER_HUB_USERNAME IMAGE_NAME CONTAINER_NAME. 
+The script `check_docker_hub_prod.sh` and `check_docker_hub_dev.sh` in `cron` directory will check if the latest docker images for both prod and dev have been pulled. If not, it will pull the most recent pushed docker image, kill the older version container, and relaunch with the latest prod or dev image. This script takes in 3 arguments: DOCKER_HUB_USERNAME IMAGE_NAME CONTAINER_NAME. 
 
 This script is set as a cron job to run every 10 minutes on the EC2 machine to ensure latest deployment.
 
@@ -72,7 +93,8 @@ then set cron job with `crontab -e`
 
 and add the followling line to file:
 ```
-*/10 * * * * sudo /usr/local/bin/check_docker_hub.sh surimkim surim_site surim_site_prod
+*/10 * * * * sudo /usr/local/bin/check_docker_hub_prod.sh surimkim surim_site surim_site_prod
+*/10 * * * * sudo /usr/local/bin/check_docker_hub_dev.sh surimkim surim_site surim_site_dev
 ```
 
 finally, save and exit the editor.
