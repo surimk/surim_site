@@ -1,7 +1,7 @@
 "use client";
-import React from 'react'
+import React from "react";
 import Image from "next/image";
-import { TypeAnimation } from 'react-type-animation';
+import { TypeAnimation } from "react-type-animation";
 
 const HeroSection = () => {
   return (
@@ -14,10 +14,7 @@ const HeroSection = () => {
             </span>
             <br></br>
             <TypeAnimation
-              sequence={[
-                'Surim Kim',
-                1000,
-              ]}
+              sequence={["Surim Kim", 1000]}
               wrapper="span"
               speed={50}
               repeat={Infinity}
@@ -32,23 +29,23 @@ const HeroSection = () => {
             </button>
             <button className="px-1 py-1 rounded-full w-full sm:w-fit bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-800 text-white mt-3">
               <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
-               Download CV
-              </span> 
+                Download CV
+              </span>
             </button>
           </div>
         </div>
         <div className="col-span-5 place-self-center mt-4 lg:mt-0">
-            <Image 
-              src="/images/headshot.jpg"
-              alt="surim"
-              className="rounded-full object-fit-cover" 
-              width={300} 
-              height={300} 
-            />         
-          </div>
+          <Image
+            src="/images/headshot.jpg"
+            alt="surim"
+            className="rounded-full object-fit-cover"
+            width={300}
+            height={300}
+          />
         </div>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
