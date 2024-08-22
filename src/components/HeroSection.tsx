@@ -27,7 +27,7 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.175 }}
           >
             <p className="text-[#ADB7BE] text-lg sm:text-lg lg:text-xl mb-6">
-              I'm a Software Engineer based in New York City with a
+              I am a Software Engineer based in New York City with a
               Bioinformatics background.
             </p>
           </motion.div>
