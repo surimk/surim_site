@@ -27,9 +27,10 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.175 }}
           >
             <p className="text-[#ADB7BE] text-lg sm:text-lg lg:text-xl mb-6">
-            I'm a Software Engineer based in New York City with a Bioinformatics background.
+              I'm a Software Engineer based in New York City with a
+              Bioinformatics background.
             </p>
-          </motion.div> 
+          </motion.div>
           <div>
             <motion.div
               initial={{ opacity: 0 }}
@@ -42,17 +43,17 @@ const HeroSection = () => {
               </button>
             </motion.div>
             <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="md:inline-block flex"
-            > 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="md:inline-block flex"
+            >
               <button className="px-1 py-1 rounded-full w-full sm:w-fit bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-800 text-white mt-3">
                 <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
                   Download CV
                 </span>
               </button>
-            </motion.div>      
+            </motion.div>
           </div>
         </div>
         <div className="col-span-5 place-self-center mt-4 lg:mt-0">

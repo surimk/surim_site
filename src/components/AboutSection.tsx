@@ -56,19 +56,24 @@ const AboutSection = () => {
       <div className="md:grid md:grid-cols-1 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:py-16">
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
           >
             <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
             <p className="text=base lg:text-lg">
-              With a strong foundation in bioinformatics and cloud infrastructure management, I excel in designing scalable cloud solutions, developing advanced bioinformatic pipelines, building efficient CI/CD workflows, and overseeing the management of compute clusters. My work is centered on driving automation and enhancing efficiency in software engineering.
+              With a strong foundation in bioinformatics and cloud
+              infrastructure management, I excel in designing scalable cloud
+              solutions, developing advanced bioinformatic pipelines, building
+              efficient CI/CD workflows, and overseeing the management of
+              compute clusters. My work is centered on driving automation and
+              enhancing efficiency in software engineering.
             </p>
-          </motion.div>  
+          </motion.div>
           <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.25 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.25 }}
           >
             <div className="flex flex-row justify-start mt-8">
               <TabButton
