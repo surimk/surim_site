@@ -17,7 +17,7 @@ data "cloudflare_zone" "surim_site" {
 
 resource "aws_instance" "surim_site" {
     ami = "ami-0862be96e41dcbf74"
-    instance_type = "t2.micro"
+    instance_type = "t3.micro"
     vpc_security_group_ids = [aws_security_group.surim_site_sg.id]
     subnet_id = data.aws_subnet.default.id
     associate_public_ip_address = true
