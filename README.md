@@ -26,7 +26,7 @@ sudo docker run -d -p 3000:3000 --name surim_site_prod surimkim/surim_site:{VERS
 For dev container, run on port 4000 and name container as surim_site_dev and use `npm run dev` command
 
 ```
-sudo docker run -d -p 4000:4000 --name surim_site_dev surimkim/surim_site:{VERSION-dev} npm run dev
+sudo docker run -d -p 4000:4000 --name surim_site_dev surimkim/surim_site:{VERSION-dev} npm run start_dev
 ```
 
 ### Enable HTTPS
