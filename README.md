@@ -33,7 +33,7 @@ After, create a new `default.conf` in `/etc/nginx/conf.d` and configure as:
 ```
 server {
     listen 80;
-    server_name surimkim.com;
+    server_name surimkim.com *.surimkim.com;
 
     location / {
         return 301 https://$host$request_uri;
