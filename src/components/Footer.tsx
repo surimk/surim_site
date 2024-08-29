@@ -16,40 +16,7 @@ const Footer = () => {
       transition={{ duration: 0.5 }}
     >
       <footer className="bg-black text-center p-2 mt-4 sticky bottom-0 bg-opacity-100">
-        <ul className="flex justify-center mt-2">
-          <li className="mr-4">
-            <a
-              href="https://github.com/surimk/surim_site"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white"
-            >
-              <FaGithub size={24} />
-            </a>
-          </li>
-          <li className="mr-4">
-            <a
-              href="https://linkedin.com/in/surimkim"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white"
-            >
-              <FaLinkedin size={24} />
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:surimkim@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white"
-            >
-              <FaEnvelope size={24} />
-            </a>
-          </li>
-        </ul>
-
-        <ul className="flex justify-center mt-2">
+        <ul className="flex justify-center mt-2 mb-2">
           <p className="text-gray-400 text-xs">
             This site is powered by &nbsp; &nbsp;
           </p>
@@ -103,6 +70,19 @@ const Footer = () => {
               <SiGithubactions size={18} />
             </a>
           </li>
+        </ul>
+        <ul className="mt-2 mb-2">
+          <p className="text-gray-400 text-xs ">
+            Check out the code for this website&nbsp;
+            <a
+              href="https://github.com/surimk/surim_site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-gray-400"
+            >
+              here
+            </a>
+          </p>
         </ul>
       </footer>
     </motion.div>

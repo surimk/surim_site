@@ -5,20 +5,24 @@ import React, { useEffect, useState } from "react";
 import NavLink from "./NavLink";
 import MenuOverlay from "./MenuOverlay";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const navLinks = [
   {
-    title: "Home",
-    path: "/",
+    title: "Github",
+    path: "https://github.com/surimk",
+    icon: <FaGithub size={28} />,
   },
   {
-    title: "Resume",
-    path: "#projects",
+    title: "LinkedIn",
+    path: "http://linkedin.com/in/surimkim",
+    icon: <FaLinkedin size={28} />,
   },
   {
-    title: "Contact",
-    path: "#contact",
+    title: "Email",
+    path: "mailto:surimkim@gmail.com",
+    icon: <FaEnvelope size={28} />,
   },
 ];
 
@@ -54,14 +58,14 @@ const Navbar = () => {
                 onClick={() => setNavbarOpen(true)}
                 className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
               >
-                <Bars3Icon className="h-5 w-5" />
+                <Bars3Icon className="h-3 w-3" />
               </button>
             ) : (
               <button
                 onClick={() => setNavbarOpen(false)}
                 className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
               >
-                <XMarkIcon className="h-5 w-5" />
+                <XMarkIcon className="h-3 w-3" />
               </button>
             )}
           </div>
@@ -72,7 +76,11 @@ const Navbar = () => {
             <ul className="flex p-2 md:p-0 md:flex-row md:space-x-6 mt-0">
               {navLinks.map((link, index) => (
                 <li key={index}>
-                  <NavLink href={link.path} title={link.title} />
+                  <NavLink
+                    href={link.path}
+                    title={link.title}
+                    icon={link.icon}
+                  />
                 </li>
               ))}
             </ul>
