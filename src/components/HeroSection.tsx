@@ -39,7 +39,7 @@ const HeroSection = () => {
               className="md:inline-block flex"
             >
               <button className="px-6 py-3 rounded-full w-full sm:w-fit mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-200 text-white">
-                Hire Me
+                <a href="mailto:surimkim@gmail.com">Contact Me</a>
               </button>
             </motion.div>
             <motion.div
@@ -52,7 +52,8 @@ const HeroSection = () => {
                 className="px-1 py-1 rounded-full w-full sm:w-fit bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-800 text-white mt-3"
                 onClick={() => {
                   const link = document.createElement("a");
-                  link.href = "https://surim-public-data.s3.us-east-2.amazonaws.com/surim_site/Surim_Kim_CV.pdf";
+                  link.href =
+                    "https://surim-public-data.s3.us-east-2.amazonaws.com/surim_site/Surim_Kim_CV.pdf";
                   link.download = "Surim_Kim_CV.pdf";
                   link.click();
                 }}
