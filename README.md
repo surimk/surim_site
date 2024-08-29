@@ -18,6 +18,7 @@ sudo docker pull surimkim/surim_site:{VERSION}
 ```
 
 Set web3forms public API key as an environment variable
+
 ```
 export WEB3FORMS_ACCESS_KEY="{API_KEY}"
 ```

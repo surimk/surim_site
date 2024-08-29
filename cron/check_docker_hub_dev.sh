@@ -12,10 +12,10 @@ TAGS=$(curl -s -H "Accept: application/json" https://hub.docker.com/v2/repositor
 # Filter the tags to get the latest one with "dev" in the end
 LATEST_DEV_TAG=$(echo "$TAGS" | jq -r '.results[] | .name' | grep -E 'dev$' | sort -V | tail -1)
 
-# Check if latest tag has been pulled
-if ! docker images --format '{{.Repository}}:{{.Tag}}' | grep -q "${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${LATEST_DEV_TAG}"; then
 # Pull the latest image
-  docker pull ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${LATEST_DEV_TAG}
+if docker pull --quiet ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${LATEST_DEV_TAG}; then
+  # If the pull is successful, it means there's a newer version of the image
+  echo "Newer version of the image found, updating..."
 
   # If the container is running, kill it
   if docker ps -q -f name=${CONTAINER_NAME} > /dev/null; then
