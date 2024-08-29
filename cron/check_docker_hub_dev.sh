@@ -25,5 +25,5 @@ if ! docker images --format '{{.Repository}}:{{.Tag}}' | grep -q "${DOCKER_HUB_U
   fi
 
   # Run the newly pulled image
-  docker run -d -p 4000:4000 --restart=always --name ${CONTAINER_NAME} ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${LATEST_DEV_TAG} npm run start_dev
+  docker run -d -e NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=$WEB3FORMS_ACCESS_KEY -p 4000:4000 --restart=always --name ${CONTAINER_NAME} ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${LATEST_DEV_TAG} npm run start_dev
 fi

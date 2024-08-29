@@ -39,7 +39,7 @@ const HeroSection = () => {
               className="md:inline-block flex"
             >
               <button className="px-6 py-3 rounded-full w-full sm:w-fit mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-200 text-white">
-                <a href="mailto:surimkim@gmail.com">Contact Me</a>
+                <a href="/contact">Contact Me</a>
               </button>
             </motion.div>
             <motion.div

@@ -5,10 +5,15 @@ import React, { useEffect, useState } from "react";
 import NavLink from "./NavLink";
 import MenuOverlay from "./MenuOverlay";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaHome } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const navLinks = [
+  {
+    title: "Home",
+    path: "/",
+    icon: <FaHome size={28} />,
+  },
   {
     title: "Github",
     path: "https://github.com/surimk",
@@ -20,8 +25,8 @@ const navLinks = [
     icon: <FaLinkedin size={28} />,
   },
   {
-    title: "Email",
-    path: "mailto:surimkim@gmail.com",
+    title: "Contact Me",
+    path: "/contact",
     icon: <FaEnvelope size={28} />,
   },
 ];

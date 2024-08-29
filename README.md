@@ -17,16 +17,21 @@ Pull the docker image
 sudo docker pull surimkim/surim_site:{VERSION}
 ```
 
-Run the docker container on port 3000 and name container as surim_site_prod
+Set web3forms public API key as an environment variable
+```
+export WEB3FORMS_ACCESS_KEY="{API_KEY}"
+```
+
+For prod, run docker image on port 3000 and name container as surim_site_prod
 
 ```
-sudo docker run -d -p 3000:3000 --name surim_site_prod surimkim/surim_site:{VERSION}
+sudo docker run -d -e NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=$WEB3FORMS_ACCESS_KEY -p 3000:3000 --name surim_site_prod surimkim/surim_site:{VERSION}
 ```
 
-For dev container, run on port 4000 and name container as surim_site_dev and use `npm run dev` command
+For dev container, run docker image on port 4000 and name container as surim_site_dev and use `npm run dev` command
 
 ```
-sudo docker run -d -p 4000:4000 --name surim_site_dev surimkim/surim_site:{VERSION-dev} npm run start_dev
+sudo docker run -d -e NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=$WEB3FORMS_ACCESS_KEY -p 4000:4000 --name surim_site_dev surimkim/surim_site:{VERSION-dev} npm run start_dev
 ```
 
 ### Enable HTTPS
