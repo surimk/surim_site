@@ -55,6 +55,7 @@ const HeroSection = () => {
                   link.href =
                     "https://surim-public-data.s3.us-east-2.amazonaws.com/surim_site/Surim_Kim_CV.pdf";
                   link.download = "Surim_Kim_CV.pdf";
+                  link.target = "_blank";
                   link.click();
                 }}
               >
