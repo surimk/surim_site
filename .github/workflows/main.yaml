@@ -46,7 +46,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}
 
   bump_release:
-    if: startsWith(github.event.head_commit.message, 'BREAKING CHANGE|feat|fix')
+    if: startsWith(github.event.head_commit.message, 'BREAKING CHANGE:') || startsWith(github.event.head_commit.message, 'feat:') || startsWith(github.event.head_commit.message, 'fix:')
     runs-on: ubuntu-latest
     needs: [react_build, docker_build]
     steps:
