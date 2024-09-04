@@ -1,3 +1,24 @@
+## 0.2.1 (2024-08-30)
+
+### Fix
+
+- test with new cz config
+- test with new cz config
+
+## 0.2.0 (2024-08-30)
+
+### Feat
+
+- create dev environment [skip-ci] (#1)
+
+### Fix
+
+- test conventional commits triggering bump gh action
+- test conventional commits triggering bump gh action
+- test version bump on updated main gh action
+- update EC2 to t3.micro [skip ci]
+- add check_docker_hub.sh script to cron [skip ci]
+
 ## 0.1.0 (2024-08-14)
 
 ### Feat
