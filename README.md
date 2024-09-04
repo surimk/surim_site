@@ -1,21 +1,24 @@
 # Surim Kim's Porfolio Website
 
 This website is built on Next.js. There is both a production and development environment.
-- surimkim.com
-- dev.surimkim.com
+
+- [surimkim.com](https://surimkim.com)
+- [dev.surimkim.com](https://dev.surimkim.com)
 
 The web server is running on an AWS Cloud EC2 instance and all AWS resources are backed as infrastructure-as-code via Terraform.
+
 - Terraform code located under `/terraform`
 - Scripts under the `/cron` directory are ran as a cron job in the EC2, in order to fetch prod and dev docker images on docker hub.
 
 Github Actions is used as CI/CD and handles builds and deployments on both production and development. Commitizen with conventional commits is used for version tagging.
+
 - `main.yaml` workflow is triggered on pushes to the main branch
 - `dev.yaml` workflow is triggered upon pull-requests against the main branch
-
 
 ## Initial AWS EC2 Setup
 
 To create the AWS EC2 instance (and Cloudflare DNS records), go into the `/terraform` directory then run:
+
 ```
 terraform apply
 ```
