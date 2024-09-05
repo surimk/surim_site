@@ -1,3 +1,9 @@
+## 1.0.0 (2024-09-05)
+
+### BREAKING CHANGE
+
+- v1.0.0 of Portfolio Website (fix CI commit)
+
 ## 0.3.0 (2024-09-05)
 
 ### BREAKING CHANGE
