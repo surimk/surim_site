@@ -6,5 +6,5 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: surim_site
-    ports: 
-      - '3000:3000'
+    ports:
+      - "3000:3000"

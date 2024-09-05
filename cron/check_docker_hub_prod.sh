@@ -28,5 +28,5 @@ if ! docker images --format '{{.Repository}}:{{.Tag}}' | grep -q "${DOCKER_HUB_U
   fi
 
   # Run the newly pulled image
-  docker run -d -p 3000:3000 --restart=always --name ${CONTAINER_NAME} ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${LATEST_TAG}
+  docker run -d -e NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=$WEB3FORMS_ACCESS_KEY -p 3000:3000 --restart=always --name ${CONTAINER_NAME} ${DOCKER_HUB_USERNAME}/${IMAGE_NAME}:${LATEST_TAG}
 fi
