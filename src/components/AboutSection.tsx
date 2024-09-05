@@ -50,6 +50,14 @@ const containerizationTools = [
   { name: "Kubernetes", url: "https://kubernetes.io/" },
 ];
 
+/**
+ * Renders a list of tools as links to their respective websites.
+ *
+ * @param {{ name: string; url: string }[]} tools - An array of objects with
+ *   `name` and `url` properties.
+ *
+ * @returns {JSX.Element} A JSX element containing a list of links.
+ */
 function renderToolList(tools: { name: string; url: string }[]) {
   return (
     <div>
@@ -69,8 +77,8 @@ function renderToolList(tools: { name: string; url: string }[]) {
 
 const TAB_DATA = [
   {
-    title: "Software Development",
-    id: "software",
+    title: "Skills",
+    id: "skills",
     content: (
       <ul className="pl-2">
         <p className="font-bold">Programming & Scripting</p>
@@ -81,14 +89,7 @@ const TAB_DATA = [
         <br></br>
         <p className="font-bold">Bioinformatics</p>
         {renderToolList(bioinformaticsTools)}
-      </ul>
-    ),
-  },
-  {
-    title: "Cloud & DevOps",
-    id: "devops",
-    content: (
-      <ul className="pl-2">
+        <br></br>
         <p className="font-bold">Cloud Platforms</p>
         {renderToolList(cloudPlatforms)}
         <br></br>
@@ -100,18 +101,6 @@ const TAB_DATA = [
         <br></br>
         <p className="font-bold">Containerization & Orchestration</p>
         {renderToolList(containerizationTools)}
-      </ul>
-    ),
-  },
-  {
-    title: "Bioinformatics",
-    id: "bioinformatics",
-    content: (
-      <ul className="pl-2">
-        <li>Nextflow</li>
-        <li>Seqera Platform</li>
-        <li>Schrodinger Maestro</li>
-        <li>Antismash</li>
       </ul>
     ),
   },
@@ -150,10 +139,24 @@ const TAB_DATA = [
   },
 ];
 
+  /**
+   * A component that displays information about the author.
+   *
+   * It displays a brief bio, a list of skills, education, and publications.
+   * The component uses motion to animate the opacity of the elements.
+   * The delay of each element is staggered to create a smooth animation.
+   *
+   * @returns {JSX.Element} The component element.
+   */
 const AboutSection = () => {
-  const [tab, setTab] = useState("software");
+  const [tab, setTab] = useState("skills");
   const [isPending, startTransition] = useTransition();
 
+  /**
+   * Handles tab change by setting the state of the tab to the given id,
+   * and starts a transition to update the tab content.
+   * @param {string} id - The id of the tab to change to.
+   */
   const handleTabChange = (id: string) => {
     startTransition(() => {
       setTab(id);
@@ -186,18 +189,11 @@ const AboutSection = () => {
           >
             <div className="flex flex-row justify-start mt-8">
               <TabButton
-                selectTab={() => handleTabChange("software")}
-                active={tab === "software"}
+                selectTab={() => handleTabChange("skills")}
+                active={tab === "skills"}
               >
                 {" "}
-                Software Development{" "}
-              </TabButton>
-              <TabButton
-                selectTab={() => handleTabChange("devops")}
-                active={tab === "devops"}
-              >
-                {" "}
-                Cloud & DevOps{" "}
+                Skills{" "}
               </TabButton>
               <TabButton
                 selectTab={() => handleTabChange("education")}

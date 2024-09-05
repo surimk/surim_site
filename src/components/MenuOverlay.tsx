@@ -7,6 +7,15 @@ interface Link {
   icon: React.ReactNode;
 }
 
+/**
+ * MenuOverlay
+ *
+ * Renders an unordered list of links as a flex column.
+ *
+ * @param {{ links: Link[] }} props
+ * @prop {Link[]} links - an array of links to render
+ * @returns {JSX.Element}
+ */
 const MenuOverlay = ({ links }: { links: Link[] }) => {
   return (
     <ul className="flex flex-col py-4 items-center">

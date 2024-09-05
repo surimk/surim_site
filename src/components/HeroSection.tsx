@@ -4,6 +4,14 @@ import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 
+/**
+ * A HeroSection component that is the first section of the website.
+ * It displays a brief introduction of the author, a call-to-action button
+ * to contact the author, and a button to download the author's CV.
+ *
+ * The component uses motion to animate the opacity of the elements.
+ * The delay of each element is staggered to create a smooth animation.
+ */
 const HeroSection = () => {
   return (
     <section>

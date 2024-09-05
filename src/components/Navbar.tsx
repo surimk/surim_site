@@ -31,10 +31,22 @@ const navLinks = [
   },
 ];
 
+  /**
+   * A responsive navigation bar that will be a hamburger menu on mobile,
+   * and a horizontal menu on desktop.
+   *
+   * @returns {JSX.Element} The navbar component.
+   */
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   useEffect(() => {
+    /**
+     * A function that is called when the window is resized.
+     * When the window is resized to be at least 768px wide,
+     * it sets the navbarOpen state to false, which closes the
+     * hamburger menu.
+     */
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setNavbarOpen(false);

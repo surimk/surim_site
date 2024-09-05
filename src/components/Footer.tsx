@@ -8,6 +8,11 @@ import {
 } from "react-icons/si";
 import { motion } from "framer-motion";
 
+/**
+ * The footer component for the website. It contains links to the technologies used
+ * to build the website and a link to the GitHub repository.
+ * @returns The footer component.
+ */
 const Footer = () => {
   return (
     <motion.div

@@ -7,6 +7,14 @@ import {
 } from "react-icons/ai";
 import { motion } from "framer-motion";
 
+  /**
+   * A contact form component that sends a POST request to the `/api/submitForm`
+   * endpoint when the form is submitted. The form contains input fields for the
+   * user's name, email address, and message. The component displays the status of
+   * the form submission, and will display an error message if the submission fails.
+   *
+   * @returns A JSX element representing the contact form.
+   */
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -19,6 +27,12 @@ const ContactForm = () => {
   >("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  /**
+   * Handles a change event on one of the form's input fields.
+   * Updates the state of the form data with the new value of the input field.
+   *
+   * @param {ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} e The change event.
+   */
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -28,11 +42,39 @@ const ContactForm = () => {
     });
   };
 
+  /**
+   * Validates an email address using a regex.
+   *
+   * The regex used is `/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i`.
+   *
+   * @param {string} email The email address to be validated.
+   * @returns {boolean} Whether the email address is valid.
+   */
   const validateEmail = (email: string) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return regex.test(email);
   };
 
+  /**
+   * Handles the form submission event.
+   *
+   * It validates the email address entered using the `validateEmail` function.
+   * If the email address is invalid, it sets the `errorMessage` state and
+   * sets the `status` state to "error".
+   *
+   * If the email address is valid, it sends a POST request to the
+   * `/api/submitForm` endpoint with the form data as JSON. If the response is
+   * successful (200 status code), it sets the `status` state to "success" and
+   * resets the form data to its initial state. If the response is not
+   * successful, it sets the `errorMessage` state to the error message from the
+   * response or a default message if no error message is provided, and sets
+   * the `status` state to "error".
+   *
+   * If the request fails due to a network error, it sets the `errorMessage`
+   * state to a default message and sets the `status` state to "error".
+   *
+   * @param {FormEvent} e The form submission event.
+   */
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("loading");
